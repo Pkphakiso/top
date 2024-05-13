@@ -15,6 +15,10 @@ export default function App() {
     setCourseGoal( currentCourseGoal => [ ...currentCourseGoal, { text: enteredGoalText, id: Math.random().toString() }]);
   }
 
+  function deleteCourseGoal(){
+    console.log("deleted!");
+  }
+
   return (
     <View style={ styles.appContainer }>
       
@@ -23,7 +27,10 @@ export default function App() {
         <FlatList 
         data={ courseGoal }
         renderItem={ itemData => { 
-          return  <GoalItem text={itemData.item.text} />
+          return  <GoalItem 
+                    text={itemData.item.text} 
+                    onDeleteItem={deleteCourseGoal}
+                  />
           }
         }
         keyExtractor={( item ) => { return item.id }}
